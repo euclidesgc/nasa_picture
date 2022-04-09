@@ -26,7 +26,7 @@ linter:
     # prefer_single_quotes: true  # Uncomment to enable the `prefer_single_quotes` rule
     prefer_const_constructors : true
     prefer_relative_imports: true
-    sort_constructors_first: true
+    sort_constructors_first: false
     avoid_print: true
 
 
