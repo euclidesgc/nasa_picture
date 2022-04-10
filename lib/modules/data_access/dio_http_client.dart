@@ -2,26 +2,19 @@ import 'dart:developer' as developer;
 
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
-import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 import 'i_http_client.dart';
 
-class DioHttpService implements IHttpClient {
-  final String _nasaApiKey = dotenv.env['NASA_API_KEY']!;
-  final String _baseUrl = dotenv.env['BASE_URL']!;
-
-// https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY
+class DioHttpClient implements IHttpClient {
+  // https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY
   final _dio = Dio();
 
-  DioHttpService({List<Interceptor> interceptors = const []}) {
+  DioHttpClient({List<Interceptor> interceptors = const []}) {
     _dio.options = BaseOptions(
-      baseUrl: _baseUrl, connectTimeout: 5000, receiveTimeout: 100000,
-      //Add default key to the queryParameters
-      queryParameters: {'api_key': _nasaApiKey},
+      connectTimeout: 5000, receiveTimeout: 100000,
       // If you have default headers, put here!
       headers: {
         'content-type': 'application/json',
-        'content-encoding': 'gzip',
       },
     );
 
@@ -34,11 +27,11 @@ class DioHttpService implements IHttpClient {
         onRequest: (requestOptions, handler) {
           if (kDebugMode) {
             developer.log(
-              "🟠 Method .: ${requestOptions.method}\n"
-              "🟠 URL........: ${requestOptions.uri.toString()}\n"
-              "🟠 Parameters.: ${requestOptions.queryParameters}\n"
-              "🟠 Data.......: ${requestOptions.data.toString()}\n"
-              "🟠 Headers....: ${requestOptions.headers.toString()}",
+              "⚪️ Method .: ${requestOptions.method}\n"
+              "⚪️ URL........: ${requestOptions.uri.toString()}\n"
+              "⚪️ Parameters.: ${requestOptions.queryParameters}\n"
+              "⚪️ Data.......: ${requestOptions.data.toString()}\n"
+              "⚪️ Headers....: ${requestOptions.headers.toString()}",
               name: 'REQUEST',
             );
           }
@@ -47,12 +40,12 @@ class DioHttpService implements IHttpClient {
         onResponse: (response, handler) {
           if (kDebugMode) {
             developer.log(
-              "🟠 StatusCode.: ${response.statusCode}\n"
-              "🟠 Message....: ${response.statusMessage}\n"
-              "🟠 URL........: ${response.requestOptions.uri.toString()}\n"
-              "🟠 Parameters.: ${response.requestOptions.queryParameters}\n"
-              "🟠 Data.......: ${response.requestOptions.data.toString()}\n"
-              "🟠 Headers....: ${response.requestOptions.headers.toString()}",
+              "🟢 StatusCode.: ${response.statusCode}\n"
+              "🟢 Message....: ${response.statusMessage}\n"
+              "🟢 URL........: ${response.requestOptions.uri.toString()}\n"
+              "🟢 Parameters.: ${response.requestOptions.queryParameters}\n"
+              "🟢 Data.......: ${response.data.toString()}\n"
+              "🟢 Headers....: ${response.headers.toString()}",
               name: 'RESPONSE',
             );
           }
@@ -61,9 +54,9 @@ class DioHttpService implements IHttpClient {
         onError: (error, handler) {
           if (kDebugMode) {
             developer.log(
-              "🟠 StatusCode.: ${error.response?.statusCode}\n"
-              "🟠 Message....: ${error.response?.statusMessage}\n"
-              "🟠 URL........: ${error.requestOptions.uri.toString()}\n",
+              "🔴 StatusCode.: ${error.response?.statusCode}\n"
+              "🔴 Message....: ${error.response?.statusMessage}\n"
+              "🔴 URL........: ${error.requestOptions.uri.toString()}\n",
               name: 'RESPONSE',
             );
           }
@@ -90,17 +83,13 @@ class DioHttpService implements IHttpClient {
     try {
       switch (method) {
         case Method.GET:
-          final response = await _dio.get(path, queryParameters: queryParameters, options: options);
-          return response;
+          return await _dio.get(path, queryParameters: queryParameters, options: options);
         case Method.POST:
-          final response = await _dio.post(path, data: data, queryParameters: queryParameters, options: options);
-          return response;
+          return await _dio.post(path, data: data, queryParameters: queryParameters, options: options);
         case Method.PUT:
-          final response = await _dio.put(path, data: data, queryParameters: queryParameters, options: options);
-          return response;
+          return await _dio.put(path, data: data, queryParameters: queryParameters, options: options);
         case Method.DELETE:
-          final response = await _dio.delete(path, data: data, queryParameters: queryParameters, options: options);
-          return response;
+          return await _dio.delete(path, data: data, queryParameters: queryParameters, options: options);
       }
     } on DioError catch (e, stacktrace) {
       // The request was made and the server responded with a status code
