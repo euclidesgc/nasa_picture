@@ -1,5 +1,5 @@
 class MediaEntity {
-  final DateTime date;
+  final String date;
   final String explanation;
   final String hdurl;
   final String mediaType;
@@ -16,7 +16,7 @@ class MediaEntity {
   });
 
   MediaEntity copyWith({
-    DateTime? date,
+    String? date,
     String? explanation,
     String? hdurl,
     String? mediaType,
