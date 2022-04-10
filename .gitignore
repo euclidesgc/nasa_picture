@@ -48,3 +48,4 @@ pubspec.lock
 .vscode/settings.json
 *.env
 pubspec.lock
+.dccache
