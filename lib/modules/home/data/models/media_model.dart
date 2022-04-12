@@ -52,8 +52,8 @@ class MediaModel {
     result.addAll({'date': date});
     result.addAll({'explanation': explanation});
     result.addAll({'hdurl': hdurl});
-    result.addAll({'mediaType': mediaType});
-    result.addAll({'serviceVersion': serviceVersion});
+    result.addAll({'media_type': mediaType});
+    result.addAll({'service_version': serviceVersion});
     result.addAll({'title': title});
     result.addAll({'url': url});
 
@@ -66,8 +66,8 @@ class MediaModel {
       date: map['date'] ?? '',
       explanation: map['explanation'] ?? '',
       hdurl: map['hdurl'] ?? '',
-      mediaType: map['mediaType'] ?? '',
-      serviceVersion: map['serviceVersion'] ?? '',
+      mediaType: map['media_type'] ?? '',
+      serviceVersion: map['service_version'] ?? '',
       title: map['title'] ?? '',
       url: map['url'] ?? '',
     );
@@ -75,13 +75,20 @@ class MediaModel {
 
   String toJson() => json.encode(toMap());
 
-  MediaEntity toMediaEntity() => MediaEntity(date: date, explanation: explanation, hdurl: hdurl, mediaType: mediaType, title: title, url: url);
+  MediaEntity toMediaEntity() => MediaEntity(
+        date: date,
+        explanation: explanation,
+        hdurl: hdurl,
+        mediaType: mediaType,
+        title: title,
+        url: url,
+      );
 
   factory MediaModel.fromJson(String source) => MediaModel.fromMap(json.decode(source));
 
   @override
   String toString() {
-    return 'MediaModel(copyright: $copyright, date: $date, explanation: $explanation, hdurl: $hdurl, mediaType: $mediaType, serviceVersion: $serviceVersion, title: $title, url: $url)';
+    return 'MediaModel(copyright: $copyright, date: $date, explanation: $explanation, hdurl: $hdurl, media_type: $mediaType, service_version: $serviceVersion, title: $title, url: $url)';
   }
 
   @override

@@ -1,12 +1,42 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
 import '../domain/entities/media_entity.dart';
 
-class DetailPage extends StatelessWidget {
+class DetailPage extends StatefulWidget {
   final MediaEntity media;
-
   const DetailPage({Key? key, required this.media}) : super(key: key);
+
+  @override
+  State<DetailPage> createState() => _DetailPageState();
+}
+
+class _DetailPageState extends State<DetailPage> {
+  late YoutubePlayerController _controller;
+
+  @override
+  void initState() {
+    super.initState();
+    final videoId = YoutubePlayer.convertUrlToId(widget.media.url);
+
+    _controller = YoutubePlayerController(
+      initialVideoId: videoId ?? '',
+      flags: const YoutubePlayerFlags(
+        autoPlay: true,
+        mute: true,
+        loop: true,
+        hideControls: true,
+      ),
+    );
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -22,15 +52,21 @@ class DetailPage extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(media.title, style: const TextStyle(fontWeight: FontWeight.bold)),
-            Text("Date: ${DateFormat('dd/MM/yyyy').format(DateTime.parse(media.date))}", style: const TextStyle(fontSize: 12)),
+            Text(widget.media.title, style: const TextStyle(fontWeight: FontWeight.bold)),
+            Text("Date: ${DateFormat('dd/MM/yyyy').format(DateTime.parse(widget.media.date))}", style: const TextStyle(fontSize: 12)),
             const SizedBox(height: 16),
-            Image.network(media.hdurl),
+            widget.media.mediaType == 'image'
+                ? Image.network(widget.media.url)
+                : YoutubePlayer(
+                    controller: _controller,
+                    showVideoProgressIndicator: true,
+                    onReady: () {},
+                  ),
             const SizedBox(height: 16),
             Expanded(
               child: SingleChildScrollView(
                 child: Text(
-                  media.explanation,
+                  widget.media.explanation,
                   textAlign: TextAlign.justify,
                   style: const TextStyle(fontSize: 16),
                 ),
