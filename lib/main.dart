@@ -11,10 +11,10 @@ import 'package:flutter_modular/flutter_modular.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await dotenv.load(fileName: ".env");
-  await Hive.initFlutter();
 
-  Hive.initFlutter();
+  await Hive.initFlutter();
   await Hive.openBox('nasa_picture');
+
   runApp(
     ModularApp(
       module: AppModule(),

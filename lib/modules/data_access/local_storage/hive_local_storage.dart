@@ -1,27 +1,31 @@
+import 'package:hive/hive.dart';
+
 import 'i_local_storage.dart';
 
 class HiveLocalStorage extends ILocalStorage {
-  @override
-  create(String key, String value) {
-    // TODO: implement create
-    throw UnimplementedError();
+  late Box box;
+
+  HiveLocalStorage() {
+    box = Hive.box('nasa_picture');
   }
 
   @override
-  Future<String> read(String key) {
-    // TODO: implement read
-    throw UnimplementedError();
+  create(String key, dynamic value) {
+    box.put(key, value);
   }
 
   @override
-  update(String key, String value) {
-    // TODO: implement update
-    throw UnimplementedError();
+  Future<dynamic> read(String key) {
+    return box.get(key);
+  }
+
+  @override
+  update(String key, dynamic value) {
+    box.put(key, value);
   }
 
   @override
   delete(String key) {
-    // TODO: implement delete
-    throw UnimplementedError();
+    box.delete(key);
   }
 }
