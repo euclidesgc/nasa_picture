@@ -5,12 +5,16 @@ class HomeState {
   final DateTime? finalDate;
   final String? errorMessage;
   final FormStatus formStatus;
+  final bool initialDateIsValid;
+  final bool finalDateIsValid;
 
   HomeState({
     this.initialDate,
     this.finalDate,
     this.errorMessage,
     this.formStatus = const InitialFormStatus(),
+    this.initialDateIsValid = false,
+    this.finalDateIsValid = false,
   });
 
   HomeState copyWith({
@@ -18,28 +22,16 @@ class HomeState {
     DateTime? finalDate,
     String? errorMessage,
     FormStatus? formStatus,
+    bool? initialDateIsValid,
+    bool? finalDateIsValid,
   }) {
     return HomeState(
       initialDate: initialDate ?? this.initialDate,
       finalDate: finalDate ?? this.finalDate,
       errorMessage: errorMessage ?? this.errorMessage,
       formStatus: formStatus ?? this.formStatus,
+      initialDateIsValid: initialDateIsValid ?? this.initialDateIsValid,
+      finalDateIsValid: finalDateIsValid ?? this.finalDateIsValid,
     );
-  }
-
-  bool get initialDateIsValid {
-    if (initialDate != null && initialDate!.compareTo(DateTime.now()) <= 0) {
-      return true;
-    } else {
-      return false;
-    }
-  }
-
-  bool get finalDateIsValid {
-    if (finalDate!.compareTo(initialDate!) >= 0) {
-      return true;
-    } else {
-      return false;
-    }
   }
 }

@@ -8,10 +8,6 @@ class InitialFormStatus extends FormStatus {
   const InitialFormStatus();
 }
 
-class SubmittingFormStatus extends FormStatus {
-  const SubmittingFormStatus();
-}
-
 class SuccessFormStatus extends FormStatus {
   final List<MediaEntity> list;
 

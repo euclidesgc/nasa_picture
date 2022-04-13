@@ -14,6 +14,16 @@ class FinalDateChanged extends HomeEvent {
   FinalDateChanged(this.finalDate);
 }
 
+class ValidateInitialDate extends HomeEvent {}
+
+class ValidateFinalDate extends HomeEvent {}
+
+class FilterList extends HomeEvent {
+  final String value;
+
+  FilterList(this.value);
+}
+
 class SetErrorMessage extends HomeEvent {
   final String? message;
 
