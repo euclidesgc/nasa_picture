@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
@@ -56,7 +57,12 @@ class _DetailPageState extends State<DetailPage> {
             Text("Date: ${DateFormat('dd/MM/yyyy').format(DateTime.parse(widget.media.date))}", style: const TextStyle(fontSize: 12)),
             const SizedBox(height: 16),
             widget.media.mediaType == 'image'
-                ? Image.network(widget.media.url)
+                ? CachedNetworkImage(
+                    imageUrl: widget.media.url,
+                    placeholder: (context, url) => const Center(child: CircularProgressIndicator()),
+                    errorWidget: (context, url, error) => const Icon(Icons.error),
+                  )
+                // Image.network(widget.media.url)
                 : YoutubePlayer(
                     controller: _controller,
                     showVideoProgressIndicator: true,
