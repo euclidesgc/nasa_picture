@@ -34,15 +34,17 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
   flutter_modular: ^4.5.1+1
+
   dio: ^4.0.6
+  hive: ^2.1.0
+  hive_flutter: ^1.1.0
   flutter_dotenv: ^5.0.2
   flutter_bloc: ^8.0.1
   flutter_easyloading: ^3.0.3
   intl: ^0.17.0
   youtube_player_flutter: ^8.0.0
   cached_network_image: ^3.2.0
-  hive: ^2.1.0
-  hive_flutter: ^1.1.0
+  connectivity_plus: ^2.3.0
 
 dev_dependencies:
   flutter_test:
