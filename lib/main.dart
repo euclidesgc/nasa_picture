@@ -27,9 +27,9 @@ void configLoading() {
     ..indicatorSize = 45.0
     ..radius = 10.0
     ..progressColor = AppColors.primary
-    ..backgroundColor = AppColors.background
-    ..indicatorColor = AppColors.onBackground
-    ..textColor = AppColors.secondary
+    ..backgroundColor = Colors.black
+    ..indicatorColor = AppColors.onPrimary
+    ..textColor = AppColors.onPrimary
     ..maskColor = Colors.black.withOpacity(0.5)
     ..userInteractions = false
     ..dismissOnTap = false;
