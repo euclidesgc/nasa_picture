@@ -25,7 +25,7 @@ class FinalDateFieldWidget extends StatelessWidget {
                 final selectedDate = await showDatePicker(
                   context: context,
                   initialDate: state.finalDate ?? DateTime.now(),
-                  firstDate: DateTime(DateTime.now().year),
+                  firstDate: state.initialDate!,
                   lastDate: DateTime.now(),
                 );
 

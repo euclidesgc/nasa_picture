@@ -52,6 +52,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
   validateInitialDate(event, emit) {
     if (state.initialDate != null && state.initialDate!.compareTo(DateTime.now()) <= 0) {
       emit(state.copyWith(initialDateIsValid: true, finalDate: state.initialDate));
+      add(FinalDateChanged(state.initialDate!));
     } else {
       emit(state.copyWith(initialDateIsValid: false));
     }
@@ -73,7 +74,6 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
 
       emit(state.copyWith(formStatus: SuccessFormStatus(result)));
     } on Exception catch (e) {
-      
       emit(state.copyWith(formStatus: FailFormStatus(e)));
       EasyLoading.showError("Erro inesperado!", dismissOnTap: true, duration: const Duration(seconds: 5), maskType: EasyLoadingMaskType.black);
     } finally {
