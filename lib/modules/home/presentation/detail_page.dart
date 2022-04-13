@@ -56,10 +56,12 @@ class _DetailPageState extends State<DetailPage> {
             Text("Date: ${widget.media.date}", style: const TextStyle(fontSize: 12)),
             const SizedBox(height: 16),
             widget.media.mediaType == 'image'
-                ? CachedNetworkImage(
-                    imageUrl: widget.media.url,
-                    placeholder: (context, url) => const Center(child: CircularProgressIndicator()),
-                    errorWidget: (context, url, error) => const Icon(Icons.error),
+                ? InteractiveViewer(
+                    child: CachedNetworkImage(
+                      imageUrl: widget.media.url,
+                      placeholder: (context, url) => const Center(child: CircularProgressIndicator()),
+                      errorWidget: (context, url, error) => const Icon(Icons.error),
+                    ),
                   )
                 // Image.network(widget.media.url)
                 : YoutubePlayer(
@@ -69,11 +71,15 @@ class _DetailPageState extends State<DetailPage> {
                   ),
             const SizedBox(height: 16),
             Expanded(
-              child: SingleChildScrollView(
-                child: Text(
-                  widget.media.explanation,
-                  textAlign: TextAlign.justify,
-                  style: const TextStyle(fontSize: 16),
+              child: Scrollbar(
+                isAlwaysShown: true,
+                thickness: 8.0,
+                child: SingleChildScrollView(
+                  child: Text(
+                    widget.media.explanation,
+                    textAlign: TextAlign.justify,
+                    style: const TextStyle(fontSize: 16),
+                  ),
                 ),
               ),
             )

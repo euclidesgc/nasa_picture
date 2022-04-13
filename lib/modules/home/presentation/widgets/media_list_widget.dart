@@ -15,18 +15,20 @@ class MediaListWidget extends StatelessWidget {
         if (state.formStatus is SuccessFormStatus) {
           final mediaList = (state.formStatus as SuccessFormStatus).list;
           return Expanded(
-            child: ListView.builder(
-              itemCount: mediaList.length,
-              itemBuilder: (BuildContext context, int index) {
-                return Card(
-                  elevation: 4,
-                  child: ListTile(
-                    title: Text(mediaList[index].title),
-                    subtitle: Text(mediaList[index].date),
-                    onTap: () => Modular.to.pushNamed('/detail', arguments: mediaList[index]),
-                  ),
-                );
-              },
+            child: Scrollbar(
+              child: ListView.builder(
+                itemCount: mediaList.length,
+                itemBuilder: (BuildContext context, int index) {
+                  return Card(
+                    elevation: 4,
+                    child: ListTile(
+                      title: Text(mediaList[index].title),
+                      subtitle: Text(mediaList[index].date),
+                      onTap: () => Modular.to.pushNamed('/detail', arguments: mediaList[index]),
+                    ),
+                  );
+                },
+              ),
             ),
           );
         }
