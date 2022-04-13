@@ -1,8 +1,8 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 
-import '../../../domain/entities/media_entity.dart';
-import '../../../domain/usecases/get_nasa_media_usecase.dart';
+import '../../domain/entities/media_entity.dart';
+import '../../domain/usecases/get_nasa_media_usecase.dart';
 import 'form_status.dart';
 
 part 'home_event.dart';
@@ -73,6 +73,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
 
       emit(state.copyWith(formStatus: SuccessFormStatus(result)));
     } on Exception catch (e) {
+      
       emit(state.copyWith(formStatus: FailFormStatus(e)));
       EasyLoading.showError("Erro inesperado!", dismissOnTap: true, duration: const Duration(seconds: 5), maskType: EasyLoadingMaskType.black);
     } finally {

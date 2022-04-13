@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../domain/usecases/get_nasa_media_usecase.dart';
-import 'home_bloc/bloc/home_bloc.dart';
+import 'home_bloc/home_bloc.dart';
 import 'widgets/widgets.dart';
 
 class HomePage extends StatelessWidget {

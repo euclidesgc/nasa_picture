@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../design_system/tokens/app_colors.dart';
-import '../home_bloc/bloc/home_bloc.dart';
+import '../home_bloc/home_bloc.dart';
 
 class ErrorMessageWidget extends StatelessWidget {
   const ErrorMessageWidget({

@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 
 import '../../../design_system/design_system.dart';
-import '../home_bloc/bloc/home_bloc.dart';
+import '../home_bloc/home_bloc.dart';
 
 class InitialDateFieldWidget extends StatelessWidget {
   const InitialDateFieldWidget({Key? key}) : super(key: key);

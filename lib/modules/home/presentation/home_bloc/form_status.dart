@@ -1,4 +1,4 @@
-import '../../../domain/entities/media_entity.dart';
+import '../../domain/entities/media_entity.dart';
 
 abstract class FormStatus {
   const FormStatus();

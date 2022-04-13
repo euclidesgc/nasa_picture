@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
-import '../home_bloc/bloc/form_status.dart';
-import '../home_bloc/bloc/home_bloc.dart';
+import '../home_bloc/form_status.dart';
+import '../home_bloc/home_bloc.dart';
 
 class MediaListWidget extends StatelessWidget {
   const MediaListWidget({Key? key}) : super(key: key);
