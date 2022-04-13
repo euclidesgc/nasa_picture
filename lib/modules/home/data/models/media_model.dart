@@ -1,5 +1,7 @@
 import 'dart:convert';
 
+import 'package:intl/intl.dart';
+
 import '../../domain/entities/media_entity.dart';
 
 class MediaModel {
@@ -75,14 +77,16 @@ class MediaModel {
 
   String toJson() => json.encode(toMap());
 
-  MediaEntity toMediaEntity() => MediaEntity(
-        date: date,
-        explanation: explanation,
-        hdurl: hdurl,
-        mediaType: mediaType,
-        title: title,
-        url: url,
-      );
+  MediaEntity toMediaEntity() {
+    return MediaEntity(
+      date: DateFormat('dd/MM/yyyy').format(DateTime.parse(date)),
+      explanation: explanation,
+      hdurl: hdurl,
+      mediaType: mediaType,
+      title: title,
+      url: url,
+    );
+  }
 
   factory MediaModel.fromJson(String source) => MediaModel.fromMap(json.decode(source));
 

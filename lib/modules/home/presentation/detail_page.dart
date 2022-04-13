@@ -1,6 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
 import '../domain/entities/media_entity.dart';
@@ -54,7 +53,7 @@ class _DetailPageState extends State<DetailPage> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(widget.media.title, style: const TextStyle(fontWeight: FontWeight.bold)),
-            Text("Date: ${DateFormat('dd/MM/yyyy').format(DateTime.parse(widget.media.date))}", style: const TextStyle(fontSize: 12)),
+            Text("Date: ${widget.media.date}", style: const TextStyle(fontSize: 12)),
             const SizedBox(height: 16),
             widget.media.mediaType == 'image'
                 ? CachedNetworkImage(
