@@ -6,6 +6,7 @@
     NASA_API_KEY='<SUA CHAVE DE API DA NASA>'
  
  Você pode obter essas informações no seguinte endereço: https://api.nasa.gov/
+ 
  API Utilizada para criação deste projeto: APOD: Astronomy Picture of the Day
 
 ## O projeto foi construído em módulos e camadas;
