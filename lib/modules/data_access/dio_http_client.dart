@@ -105,12 +105,9 @@ class DioHttpClient implements IHttpClient {
           throw Exception(e.response!.data["error"]);
         }
         if (e.response!.statusCode == 401) {
-          throw UnimplementedError();
+          throw Exception(e.response!.data["error"]);
         }
-        if (e.response!.data["code"] == 101) {
-          debugPrint("🟠 Login ou senha inválida");
-          throw UnimplementedError();
-        }
+
         return e.response;
       }
     } catch (e, stackTrace) {

@@ -1,6 +1,6 @@
+import '../../home/data/models/local_media_model.dart';
+
 abstract class ILocalStorage {
-  create(String key, String value);
-  Future<dynamic> read(String key);
-  update(String key, String value);
-  delete(String key);
+  Future<void> insertMedia(LocalMediaModel media);
+  Future<List<LocalMediaModel>> getMediaList();
 }

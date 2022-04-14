@@ -2,7 +2,7 @@ import 'package:flutter_modular/flutter_modular.dart';
 
 import '../data_access/data_access_module.dart';
 import '../data_access/dio_http_client.dart';
-import '../data_access/local_storage/hive_local_storage.dart';
+import '../data_access/local_storage/local_storage.dart';
 import 'data/datasources/home_datasource.dart';
 import 'data/datasources/i_home_datasource.dart';
 import 'data/repositories/home_repository.dart';
@@ -19,7 +19,7 @@ class HomeModule extends Module {
 
   @override
   List<Bind> get binds => [
-        Bind.singleton<IHomeDatasource>((i) => HomeDatasource(localDb: i<HiveLocalStorage>(), client: i<DioHttpClient>())),
+        Bind.singleton<IHomeDatasource>((i) => HomeDatasource(localDb: i<LocalStorage>(), client: i<DioHttpClient>())),
         Bind.singleton<IHomeRepository>((i) => HomeRepository(datasource: i<HomeDatasource>())),
         Bind.singleton((i) => GetNasaMediaUsecase(repository: i<HomeRepository>())),
       ];

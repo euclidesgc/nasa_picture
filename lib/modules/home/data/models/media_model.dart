@@ -50,6 +50,7 @@ class MediaModel {
   Map<String, dynamic> toMap() {
     final result = <String, dynamic>{};
 
+    result.addAll({'id': int.parse(date.replaceAll('-', ''))});
     result.addAll({'copyright': copyright});
     result.addAll({'date': date});
     result.addAll({'explanation': explanation});

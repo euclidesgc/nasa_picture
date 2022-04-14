@@ -67,7 +67,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
   }
 
   void formSubmitted(event, emit) async {
-    EasyLoading.show(status: 'Aguarde ...', maskType: EasyLoadingMaskType.black);
+    EasyLoading.show(status: 'Wait ...', maskType: EasyLoadingMaskType.black);
     try {
       final result = await usecase(initialDate: state.initialDate!, finalDate: state.finalDate!);
       listMedias = result;
@@ -75,7 +75,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
       emit(state.copyWith(formStatus: SuccessFormStatus(result)));
     } on Exception catch (e) {
       emit(state.copyWith(formStatus: FailFormStatus(e)));
-      EasyLoading.showError("Erro inesperado!", dismissOnTap: true, duration: const Duration(seconds: 5), maskType: EasyLoadingMaskType.black);
+      EasyLoading.showError("Error!", dismissOnTap: true, duration: const Duration(seconds: 5), maskType: EasyLoadingMaskType.black);
     } finally {
       EasyLoading.dismiss();
     }
