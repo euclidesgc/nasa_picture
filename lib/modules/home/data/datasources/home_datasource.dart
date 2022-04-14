@@ -4,7 +4,7 @@ import 'dart:developer' as develop;
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 
-import '../../../data_access/i_http_client.dart';
+import '../../../data_access/http_client/i_http_client.dart';
 import '../../../data_access/local_storage/i_local_storage.dart';
 import '../models/local_media_model.dart';
 import '../models/media_model.dart';

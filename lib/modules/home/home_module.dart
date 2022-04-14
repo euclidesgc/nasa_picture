@@ -1,7 +1,7 @@
 import 'package:flutter_modular/flutter_modular.dart';
 
 import '../data_access/data_access_module.dart';
-import '../data_access/dio_http_client.dart';
+import '../data_access/http_client/dio_http_client.dart';
 import '../data_access/local_storage/local_storage.dart';
 import 'data/datasources/home_datasource.dart';
 import 'data/datasources/i_home_datasource.dart';
