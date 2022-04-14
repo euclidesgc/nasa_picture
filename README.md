@@ -1,41 +1,57 @@
 # Descrição do projeto:
 
-## Para executar o projeto na sua máquina crie um arquivo " .env " na raiz do projeto com os seguintes dados que representam variáveis de ambiente:
-    
-    BASE_URL='https://api.nasa.gov/planetary/apod'
-    NASA_API_KEY='<SUA CHAVE DE API DA NASA>'
- 
- Você pode obter essas informações no seguinte endereço: https://api.nasa.gov/
- 
- API Utilizada para criação deste projeto: APOD: Astronomy Picture of the Day
+Para executar o projeto na sua máquina crie um arquivo " .env " na raiz do projeto com os seguintes dados que representam variáveis de ambiente:
 
-## O projeto foi construído em módulos e camadas;
+```
+BASE_URL='https://api.nasa.gov/planetary/apod'
+NASA_API_KEY='<SUA CHAVE DE API DA NASA>'
+```
 
-Módulos:
-    data_access
-        - serviços de acesso a api e base de dados local
-    design_system
-        - componentes globais do app e cores utilizadas
-    home
-        - Módulo principal do app dividido em 3 camadas: presentation, domain e data
-            * data: responsável por acessar os dados e passar para a camada de domain
-            * domain: contém os usecases dos app e as entidades que serão utilizadas na camada presentation
-            * presentation: > Interface gráfica do app, utiliza flutter_bloc para gerenciar o estado;
-                            > Uma página principal com seletores de data inicial e final e um campo para filtrar a lista de "imagens do dia" por data ou por título;
-                            > Página de detalhe que exibe a imagem ou o video. No campo de imagem é permitido usar o movimento de pinça para dar zoom na imagem.
-                            > Sqlite utilizado para guardar as as informações e o cached_image_network para guardar as imagens e permitir que o app seja utilizado off line;
+>  Você pode obter essas informações no seguinte endereço: https://api.nasa.gov/
+>  API Utilizada para criação deste projeto: APOD: Astronomy Picture of the Day
 
-    Packages utilizados: 
-        dio: ^4.0.6 .................... client http para acesso a api
-        sqflite: ^2.0.2 ................ banco de dados local
-        flutter_dotenv: ^5.0.2 ......... variáveis de ambiente para armazenamento das chaves de acesso a api da Nasa
-        flutter_bloc: ^8.0.1 ........... Pacote para gestão de estado
-        flutter_easyloading: ^3.0.3 .... Exibição de uma loading amigável enquanto as informações são buscadas
-        intl: ^0.17.0 .................. Formatação de data
-        youtube_player_flutter: ^8.0.0 . Exibição de vídeos
-        cached_network_image: ^3.2.0 ... Cache de imagens
-        connectivity_plus: ^2.3.0 ...... Obtém o status da conexão com a internet
+## O projeto foi construído em módulos e camadas:
 
+### Módulos:
+1. #### data_access
+Serviços de acesso a api e base de dados local
+
+2. #### design_system
+Componentes e cores globais do app
+
+3. #### home
+Módulo principal do app dividido em 3 camadas: presentation, domain e data
+**data:** Responsável por acessar os dados e passar para a camada de domain
+**domain:** Contém os usecases dos app e as entidades que serão utilizadas na camada presentation
+**presentation:** Interface gráfica do app, utiliza flutter_bloc para gerenciar o estado;
+
+------------
+
+**A camada de apresentação foi construída da seguinte forma:**
+
+Uma página principal com seletores de data inicial e final e um campo para filtrar a lista de "imagens do dia" por data ou por título;
+
+Página de detalhe que exibe a imagem ou o video. No campo de imagem é permitido usar o movimento de pinça para dar zoom na imagem.
+
+Sqlite utilizado para guardar as as informações e o cached_image_network para guardar as imagens e permitir que o app seja utilizado off line;
+
+### Packages utilizados:
+| Package| Descrição|
+| ------------ | ------------ |
+|  dio: ^4.0.6  |  client http para acesso a api |
+|sqflite: ^2.0.2|banco de dados local|
+|flutter_dotenv: ^5.0.2|variáveis de ambiente para armazenamento das chaves de acesso a api da Nasa|
+|flutter_bloc: ^8.0.1|Pacote para gestão de estado|
+|flutter_easyloading: ^3.0.3|Exibição de uma loading amigável enquanto as informações são buscadas|
+|intl: ^0.17.0|Formatação de data|
+|youtube_player_flutter: ^8.0.0|Exibição de vídeos|
+|cached_network_image: ^3.2.0|Cache de imagens|
+|connectivity_plus: ^2.3.0|Obtém o status da conexão com a internet|
+
+
+[========]
+
+# Requisitos propostos do projeto:
 
 # Mobile Engineer test #2
 
