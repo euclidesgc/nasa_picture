@@ -2,7 +2,6 @@ import 'dart:convert';
 import 'dart:developer' as develop;
 
 import 'package:connectivity_plus/connectivity_plus.dart';
-import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 import '../../../data_access/http_client/i_http_client.dart';
 import '../../../data_access/local_storage/i_local_storage.dart';
@@ -20,8 +19,8 @@ class HomeDatasource implements IHomeDatasource {
 
   @override
   Future<List<MediaModel>> getNasaMedia({required String initialDate, required String finalDate}) async {
-    final String _nasaApiKey = dotenv.env['NASA_API_KEY']!;
-    final String urlPath = dotenv.env['BASE_URL']!;
+    const String _nasaApiKey = String.fromEnvironment('NASA_API_KEY');
+    const String urlPath = String.fromEnvironment('BASE_URL');
 
     final connectivityResult = await (Connectivity().checkConnectivity());
 

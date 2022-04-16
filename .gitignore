@@ -56,3 +56,4 @@ ios/Flutter/Release.xcconfig
 ios/Runner.xcodeproj/project.pbxproj
 ios/Runner.xcworkspace/contents.xcworkspacedata
 .dccache
+.vscode/launch.json

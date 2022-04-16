@@ -1,10 +1,27 @@
 # Descrição do projeto:
 
-Para executar o projeto na sua máquina crie um arquivo " .env " na raiz do projeto com os seguintes dados que representam variáveis de ambiente:
+Para executar o projeto na sua máquina execute a aplicação configures seu arquivo .vscode/launch.json com os seguintes argumentos ou através da linha de comnando:
 
 ```
-BASE_URL='https://api.nasa.gov/planetary/apod'
-NASA_API_KEY='<SUA CHAVE DE API DA NASA>'
+// linha de comando:
+> flutter run --dart-define=BASE_URL=https://api.nasa.gov/planetary/apod --dart-define=NASA_API_KEY=<SUA CHAVE DE API DA NASA>
+```
+
+ou
+ 
+\> .vscode/launch.json
+
+```
+{
+    "name": "Flutter",
+    "type": "dart",
+    "request": "launch",
+    "program": "lib/main.dart",
+    "args": [
+        "--dart-define=BASE_URL=https://api.nasa.gov/planetary/apod",
+        "--dart-define=NASA_API_KEY=<SUA CHAVE DE API DA NASA>"
+    ]
+},
 ```
 
 >  Você pode obter essas informações no seguinte endereço: https://api.nasa.gov/
