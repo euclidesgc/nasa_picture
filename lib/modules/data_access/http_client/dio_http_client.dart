@@ -3,6 +3,8 @@ import 'dart:developer' as developer;
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 
+import '../../home/core/errors/exceptions.dart';
+import '../../home/core/errors/failures.dart';
 import 'i_http_client.dart';
 
 class DioHttpClient implements IHttpClient {
@@ -96,16 +98,14 @@ class DioHttpClient implements IHttpClient {
       // that falls out of the range of 2xx and is also not 304.
       if (e.type == DioErrorType.connectTimeout) {
         developer.log("Timeout!", stackTrace: stacktrace);
+        throw ServerException();
       }
       if (e.type == DioErrorType.response) {
         developer.log("🟠 Response.code out of range 2xx : ${e.response!.statusCode}",
             error: e, stackTrace: stacktrace, name: 'dio_http_client.dart');
 
         if (e.response!.statusCode == 400) {
-          throw Exception(e.response!.data["error"]);
-        }
-        if (e.response!.statusCode == 401) {
-          throw Exception(e.response!.data["error"]);
+          throw InvalidDate();
         }
 
         return e.response;
@@ -114,7 +114,7 @@ class DioHttpClient implements IHttpClient {
       if (kDebugMode) {
         developer.log("Erro não expecificado!", name: 'dio_http_client.dart', error: e, stackTrace: stackTrace);
       }
-      throw Exception();
+      throw ServerException();
     }
   }
 }

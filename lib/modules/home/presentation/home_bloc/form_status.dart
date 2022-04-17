@@ -15,7 +15,5 @@ class SuccessFormStatus extends FormStatus {
 }
 
 class FailFormStatus extends FormStatus {
-  final Exception? exception;
-
-  const FailFormStatus(this.exception);
+  const FailFormStatus();
 }

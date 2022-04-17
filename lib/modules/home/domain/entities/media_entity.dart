@@ -15,6 +15,15 @@ class MediaEntity {
     required this.url,
   });
 
+  MediaEntity.empty({
+    this.date = '',
+    this.explanation = '',
+    this.hdurl = '',
+    this.mediaType = '',
+    this.title = '',
+    this.url = '',
+  });
+
   MediaEntity copyWith({
     String? date,
     String? explanation,

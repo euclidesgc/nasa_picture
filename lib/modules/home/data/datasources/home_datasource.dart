@@ -5,6 +5,8 @@ import 'package:connectivity_plus/connectivity_plus.dart';
 
 import '../../../data_access/http_client/i_http_client.dart';
 import '../../../data_access/local_storage/i_local_storage.dart';
+import '../../core/errors/exceptions.dart';
+import '../../core/errors/failures.dart';
 import '../models/local_media_model.dart';
 import '../models/media_model.dart';
 import 'i_home_datasource.dart';
@@ -72,9 +74,12 @@ class HomeDatasource implements IHomeDatasource {
         }
 
         return myList;
+      } on InvalidDate catch (error, stackTrace) {
+        develop.log('🟡 Data inválida', error: error, stackTrace: stackTrace, name: 'Home_datasource.dart');
+        throw InvalidDate();
       } catch (error, stackTrace) {
         develop.log('🟡 Erro ao obter media', error: error, stackTrace: stackTrace, name: 'Home_datasource.dart');
-        throw Exception();
+        throw ServerException();
       }
     }
   }
