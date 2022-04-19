@@ -1,6 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 
+import '../../core/errors/failures.dart';
 import '../../domain/entities/media_entity.dart';
 import '../../domain/usecases/get_nasa_media_usecase.dart';
 import 'form_status.dart';
@@ -73,8 +74,11 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
       listMedias = result;
 
       emit(state.copyWith(formStatus: SuccessFormStatus(result)));
-    } on Exception catch (e) {
-      emit(state.copyWith(formStatus: FailFormStatus(e)));
+    } on InvalidDate {
+      emit(state.copyWith(formStatus: const FailFormStatus()));
+      EasyLoading.showError("Data inválida!", dismissOnTap: true, duration: const Duration(seconds: 5), maskType: EasyLoadingMaskType.black);
+    } on ServerFailure {
+      emit(state.copyWith(formStatus: const FailFormStatus()));
       EasyLoading.showError("Error!", dismissOnTap: true, duration: const Duration(seconds: 5), maskType: EasyLoadingMaskType.black);
     } finally {
       EasyLoading.dismiss();
