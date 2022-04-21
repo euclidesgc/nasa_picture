@@ -1,3 +1,4 @@
+import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
 import '../data_access/data_access_module.dart';
@@ -19,7 +20,7 @@ class HomeModule extends Module {
 
   @override
   List<Bind> get binds => [
-        Bind.singleton<IHomeDatasource>((i) => HomeDatasource(localDb: i<LocalStorage>(), client: i<DioHttpClient>())),
+        Bind.singleton<IHomeDatasource>((i) => HomeDatasource(localDb: i<LocalStorage>(), client: i<DioHttpClient>(), connectivity: Connectivity())),
         Bind.singleton<IHomeRepository>((i) => HomeRepository(datasource: i<HomeDatasource>())),
         Bind.singleton((i) => GetNasaMediaUsecase(repository: i<HomeRepository>())),
       ];

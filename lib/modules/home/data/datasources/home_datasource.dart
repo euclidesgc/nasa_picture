@@ -14,8 +14,9 @@ import 'i_home_datasource.dart';
 class HomeDatasource implements IHomeDatasource {
   final IHttpClient client;
   final ILocalStorage localDb;
+  final Connectivity connectivity;
 
-  HomeDatasource({required this.localDb, required this.client});
+  HomeDatasource({required this.localDb, required this.client, required this.connectivity});
 
   List<MediaModel> mediaModelFromJson(String str) => List<MediaModel>.from(jsonDecode(str).map((x) => MediaModel.fromJson(x)));
 
@@ -24,7 +25,7 @@ class HomeDatasource implements IHomeDatasource {
     const String _nasaApiKey = String.fromEnvironment('NASA_API_KEY');
     const String urlPath = String.fromEnvironment('BASE_URL');
 
-    final connectivityResult = await (Connectivity().checkConnectivity());
+    final connectivityResult = await (connectivity.checkConnectivity());
 
     if (connectivityResult == ConnectivityResult.none) {
       //Pega os dados do armazenamento local

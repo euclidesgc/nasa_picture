@@ -13,8 +13,7 @@ class HomeRepository implements IHomeRepository {
   Future<List<MediaEntity>> getNasaMedia({required String initialDate, required String finalDate}) async {
     try {
       final response = await datasource.getNasaMedia(initialDate: initialDate, finalDate: finalDate);
-      final medias = response.map<MediaEntity>((e) => e.toMediaEntity()).toList();
-      return medias;
+      return response.map<MediaEntity>((e) => e.toMediaEntity()).toList();
     } on ServerException {
       throw ServerFailure;
     }
