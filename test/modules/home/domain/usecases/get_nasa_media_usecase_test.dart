@@ -20,7 +20,7 @@ void main() {
     usecase = GetNasaMediaUsecase(repository: repository);
   });
 
-  test('should return a list of MediaEntity when getNasaMedia is called', () async {
+  test('should return a list of MediaEntity when GetNasaMediaUsecase is called', () async {
     // Arrange
     when(
       () => repository.getNasaMedia(initialDate: any(named: 'initialDate'), finalDate: any(named: 'finalDate')),
@@ -41,27 +41,17 @@ void main() {
         ))).called(1);
   });
 
+  test('should return a error when getNasaMedia is called with an invalidDate', () async {
+    // Arrange
+    String futureDate = tomorrow.toString().substring(0, 10);
 
-  // test('should return a error when getNasaMedia is called with an invalidDate', () async {
-  //   // Arrange
-  //   String futureDate = tomorrow.toString().substring(1, 10);
+    when(
+      () => repository.getNasaMedia(initialDate: any(named: 'initialDate'), finalDate: futureDate),
+    ).thenThrow(Exception());
 
-  //   when(
-  //     () => repository.getNasaMedia(initialDate: any(named: 'initialDate'), finalDate: futureDate),
-  //   ).thenThrow(
-  //     (_) async => Exception(),
-  //   );
+    // Assert
+    expect(() => usecase(initialDate: yesterday, finalDate: tomorrow), throwsA(isA<Exception>()));
 
-  //   // Act
-  //   final result = await usecase(initialDate: yesterday, finalDate: tomorrow);
-
-  //   // Assert
-  //   expect(result, Exception());
-
-  //   verify(() => repository.getNasaMedia(
-  //       initialDate: any(named: 'initialDate'),
-  //       finalDate: any(
-  //         named: 'finalDate',
-  //       ))).called(1);
-  // });
+    verify(() => repository.getNasaMedia(initialDate: any(named: 'initialDate'), finalDate: futureDate)).called(1);
+  });
 }
