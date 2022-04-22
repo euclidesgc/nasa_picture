@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:io';
 
-String fixture(String fileName) => File('test/fixtures/$fileName').readAsStringSync();
+fixture(String fileName) => jsonDecode(File('test/fixtures/$fileName').readAsStringSync());
